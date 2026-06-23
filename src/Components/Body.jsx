@@ -8,7 +8,7 @@ const Body = () =>{
 
         <div className="min-h-screen flex flex-col" >
                   <NavBar />
-                  <main className="flex-grow"  >
+                  <main className="grow"  >
                      <Outlet />
                   </main>
                  
