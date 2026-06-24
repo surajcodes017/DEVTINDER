@@ -17,3 +17,9 @@
 - Whenever you're making API call , make sure to pass axios  with =>{withCredentials: true }
 - Intsall Redux-ToolKit 
 - Install redux-react + @reduxjs/toolkit =>  configureStore =>Provider [provide the configured store with Provider] =? createSlice
+
+- Login and see if the data is comming into the redux store properly 
+- Navbar should update as soon the user Logs In
+- you should not access the other routes without login
+- If token is not present , redirect user to login page
+
