@@ -4,47 +4,50 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
+import { validateLoginData } from "../utils/validation";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("virat.kohli18@gmail.com");
   const [password, setPassword] = useState("Virat@2027");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogin = async() => {
+  const handleLogin = async () => {
+    const validationError = validateLoginData(emailId, password);
+    console.log(validationError);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
 
-      try{
-        
-        const res = await axios.post(BASE_URL+"/login",{
-            emailId,
-            password,
+    try {
+      setError("");
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          emailId,
+          password,
         },
         {
-            withCredentials: true
-        }
-    );
-    console.log(res.data);
-    dispatch(addUser(res.data));
-    return navigate("/")
-      }
-      catch(err){
-            console.log(err.message);
-      }
+          withCredentials: true,
+        },
+      );
+      console.log(res.data);
+      dispatch(addUser(res.data));
+      return navigate("/");
+    } catch (err) {
+      setError(err?.response?.data || "Something went wrong");
+    }
   };
 
   return (
     <div className="hero min-h-[80vh]">
       <div className="card w-full max-w-md bg-base-100/10 backdrop-blur-lg border border-base-300 shadow-2xl">
-
         <div className="card-body">
-
           {/* Logo Section */}
           <div className="flex flex-col items-center mb-4">
-           
-
-            <h1 className="text-4xl font-bold mt-4">
-              DevTinder
-            </h1>
+            <h1 className="text-4xl font-bold mt-4">DevTinder</h1>
 
             <p className="text-sm opacity-70 mt-1">
               Connect with fellow developers
@@ -57,10 +60,19 @@ const Login = () => {
               <span className="label-text">Email ID</span>
             </label>
 
-            <input
+            {/* <input
               type="email"
               placeholder="suraj@example.com"
               className="input input-bordered w-full"
+              value={emailId}
+              onChange={(e) => setEmailId(e.target.value)}
+            /> */}
+            <input
+              type="email"
+              placeholder="suraj@example.com"
+              className={`input input-bordered w-full ${
+                error ? "input-error" : ""
+              }`}
               value={emailId}
               onChange={(e) => setEmailId(e.target.value)}
             />
@@ -81,12 +93,13 @@ const Login = () => {
             />
           </div>
 
+          {error && (
+            <p className="text-red-500 text-sm mt-2 font-medium">{error}</p>
+          )}
+
           {/* Forgot Password */}
           <div className="text-right mt-2">
-            <a
-              href="#"
-              className="text-sm text-primary hover:underline"
-            >
+            <a href="#" className="text-sm text-primary hover:underline">
               Forgot Password?
             </a>
           </div>
@@ -100,14 +113,10 @@ const Login = () => {
           </button>
 
           {/* Divider */}
-          <div className="divider">
-            OR
-          </div>
+          <div className="divider">OR</div>
 
           {/* Google Login */}
-          <button className="btn btn-outline">
-            Continue with Google
-          </button>
+          <button className="btn btn-outline">Continue with Google</button>
 
           {/* Sign Up */}
           <p className="text-center mt-4 text-sm">
@@ -116,7 +125,6 @@ const Login = () => {
               Create Account
             </span>
           </p>
-
         </div>
       </div>
     </div>
