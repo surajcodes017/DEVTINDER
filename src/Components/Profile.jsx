@@ -7,22 +7,15 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Profile = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector((store) => store.user);
+  const [editUser, setEditUser] = useState(null);
 
-
-
-const loggedInUser = useSelector((store) => store.user);
-
-const [editUser,setEditUser] = useState(null);
-
-useEffect(() => {
-    if(loggedInUser){
-        setEditUser(loggedInUser);
+  useEffect(() => {
+    if (loggedInUser) {
+      setEditUser(loggedInUser);
     }
-},[loggedInUser]);
-
-
-
+  }, [loggedInUser]);
 
   const handleChange = (e) => {
     setEditUser({
@@ -38,56 +31,40 @@ useEffect(() => {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     try {
-        const payload = {
-    firstName: editUser.firstName,
-    lastName: editUser.lastName,
-    age: editUser.age,
-    gender: editUser.gender,
-    photoUrl: editUser.photoUrl,
-    bio: editUser.bio,
-    skills: editUser.skills,
-};
-        const res = await axios.patch(
-            BASE_URL+"/profile/edit",
-            payload,
-            {
-                 withCredentials:true,
-        });
-        
-    
-        dispatch(addUser(res?.data?.data));
-        
-    
-        alert("Profile Updated Successfully 🎉");
+      const payload = {
+        firstName: editUser.firstName,
+        lastName: editUser.lastName,
+        age: editUser.age,
+        gender: editUser.gender,
+        photoUrl: editUser.photoUrl,
+        bio: editUser.bio,
+        skills: editUser.skills,
+      };
+      const res = await axios.patch(BASE_URL + "/profile/edit", payload, {
+        withCredentials: true,
+      });
+
+      dispatch(addUser(res?.data?.data));
+
+      alert("Profile Updated Successfully 🎉");
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
-
-
   };
 
   return (
     <div className="min-h-screen bg-base-200 py-10 px-5">
-
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
-
         {/* Left Side */}
 
         <div className="bg-base-100 rounded-3xl shadow-2xl p-8">
+          <h1 className="text-4xl font-bold mb-8">Edit Profile</h1>
 
-          <h1 className="text-4xl font-bold mb-8">
-            Edit Profile
-          </h1>
-
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="font-semibold">First Name</label>
 
@@ -101,9 +78,7 @@ useEffect(() => {
             </div>
 
             <div>
-              <label className="font-semibold">
-                Last Name
-              </label>
+              <label className="font-semibold">Last Name</label>
 
               <input
                 type="text"
@@ -115,12 +90,8 @@ useEffect(() => {
             </div>
 
             <div className="grid grid-cols-2 gap-5">
-
               <div>
-
-                <label className="font-semibold">
-                  Age
-                </label>
+                <label className="font-semibold">Age</label>
 
                 <input
                   type="number"
@@ -129,14 +100,10 @@ useEffect(() => {
                   onChange={handleChange}
                   className="input input-bordered w-full mt-2"
                 />
-
               </div>
 
               <div>
-
-                <label className="font-semibold">
-                  Gender
-                </label>
+                <label className="font-semibold">Gender</label>
 
                 <select
                   name="gender"
@@ -148,16 +115,11 @@ useEffect(() => {
                   <option>Female</option>
                   <option>Other</option>
                 </select>
-
               </div>
-
             </div>
 
             <div>
-
-              <label className="font-semibold">
-                Photo URL
-              </label>
+              <label className="font-semibold">Photo URL</label>
 
               <input
                 type="text"
@@ -166,14 +128,10 @@ useEffect(() => {
                 onChange={handleChange}
                 className="input input-bordered w-full mt-2"
               />
-
             </div>
 
             <div>
-
-              <label className="font-semibold">
-                Skills
-              </label>
+              <label className="font-semibold">Skills</label>
 
               <input
                 type="text"
@@ -181,14 +139,10 @@ useEffect(() => {
                 onChange={handleSkills}
                 className="input input-bordered w-full mt-2"
               />
-
             </div>
 
             <div>
-
-              <label className="font-semibold">
-                Bio
-              </label>
+              <label className="font-semibold">Bio</label>
 
               <textarea
                 rows={5}
@@ -197,29 +151,20 @@ useEffect(() => {
                 onChange={handleChange}
                 className="textarea textarea-bordered w-full mt-2"
               />
-
             </div>
 
-            <button
-              className="btn btn-primary w-full text-lg"
-            >
+            <button className="btn btn-primary w-full text-lg">
               Save Profile
             </button>
-
           </form>
-
         </div>
 
         {/* Right Side */}
 
         <div className="flex justify-center items-start">
-
           <UserCard user={editUser} />
-
         </div>
-
       </div>
-
     </div>
   );
 };

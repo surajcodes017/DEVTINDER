@@ -76,7 +76,7 @@ const NavBar = () => {
               </li>
 
               <li>
-                <a>Settings</a>
+                <Link to="/Connections" >Connections</Link>
               </li>
 
               <li>
