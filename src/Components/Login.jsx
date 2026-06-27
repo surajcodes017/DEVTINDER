@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     const validationError = validateLoginData(emailId, password);
-    console.log(validationError);
+    
     if (validationError) {
       setError(validationError);
       return;
