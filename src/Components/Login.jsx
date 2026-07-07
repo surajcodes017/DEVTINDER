@@ -5,6 +5,7 @@ import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
 import { validateLoginData } from "../utils/validation";
+import {Link} from "react-router";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("virat.kohli18@gmail.com");
@@ -34,7 +35,7 @@ const Login = () => {
         },
       );
       console.log(res.data);
-      dispatch(addUser(res.data));
+      dispatch(addUser(res.data.data));
       return navigate("/");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
@@ -121,9 +122,9 @@ const Login = () => {
           {/* Sign Up */}
           <p className="text-center mt-4 text-sm">
             New to DevTinder?{" "}
-            <span className="text-primary font-semibold cursor-pointer hover:underline">
+            <Link to="/signUp"   className="text-primary font-semibold cursor-pointer hover:underline">
               Create Account
-            </span>
+            </Link>
           </p>
         </div>
       </div>

@@ -69,7 +69,7 @@ const NavBar = () => {
                   to="/profile"
                   className="justify-between"
                   onClick={handleProfileClick}
-                >
+                > 
                   Profile
                   <span className="badge">New</span>
                 </Link>
@@ -77,6 +77,10 @@ const NavBar = () => {
 
               <li>
                 <Link to="/Connections" >Connections</Link>
+              </li>
+
+               <li>
+                <Link to="/Requests" >Requests</Link>
               </li>
 
               <li>
