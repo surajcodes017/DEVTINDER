@@ -23,3 +23,13 @@
 - you should not access the other routes without login
 - If token is not present , redirect user to login page
 
+
+
+# Deployment
+
+- signUp on AWS Account
+- Launch instance
+- chmod 400 <secret.pem>
+- ssh -i "devTinder-key.pem" ubuntu@ec2-3-27-46-211.ap-southeast-2.compute.amazonaws.com   =>  connected to the machine using this ssh command
+- Install Node version
+- git clone frontend and backend
