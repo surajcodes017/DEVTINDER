@@ -1,4 +1,4 @@
-# DEV TINDER
+# DEV TINDER Front End
 
 - create a Vite + React application
 - Make it as git Repository
