@@ -75,3 +75,13 @@
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_cache_bypass $http_upgrade;
     }
+
+
+# Adding a custom Domian Name
+
+    - purchase a domain name from goDaddy
+    - sign up on cloud fare
+    - change the nameservers on godaddy and point it to cloudfare
+    - wait for sometime till your name serves are updated ~ 15 mins
+    - DSN Record : A devtinder.in 3.27.46.211
+    - Enable ssl for website
