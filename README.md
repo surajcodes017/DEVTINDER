@@ -85,3 +85,64 @@
     - wait for sometime till your name serves are updated ~ 15 mins
     - DSN Record : A devtinder.in 3.27.46.211
     - Enable ssl for website
+
+
+# Keeping our credentials safe using .env file
+
+    - create .env file , in that add all your connections strings , jwt secrets, port numbers into that file
+    - configure .env file by installing an npm package
+    - npm install dotenv --save
+    - add the below code line in the top of root file of backend project 
+      -require('dotenv').config()
+    - in the .gitignore add .env and then push to github
+    - now when deploying backend into production , we have to create a dotenv file manually on that place, and our keys will be in this place 
+
+    - for manually creating .env => sudo nano .env
+    
+# sending Emails Via SES
+
+    - create an IAM User
+    - Give Access to AmazonSESFullAccess
+    - In Amazon SES: Create an Identity
+    - Verify your domain Name
+    - Veify your Email Address to send an email when in sandbox
+    - Install AWS SDK V3
+    - CODE Example=> https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples 
+    - setUp SES client
+    - Go to IAM user , and inside that go security credentials , and in that create access key pair,  and save them in .env file
+    - after that in backend download AWS sdk for node , and go to git hub of v3 sdk 
+    - set up sesClient and sendEmail in helpers/utils folder
+    - make the email dynamic by passing more params to the fucntion
+
+
+# scheduling cron jobs in Node 
+
+    - installing node-cron npm package
+    - Learning about cron-expression syntax , in website called crontab-guru
+    - scheding a job
+    - date-fns package
+    - find all unique email ids , who's status is intrested in prevoius day
+    - explore queue mechanisms to send bulk emails
+    - Amazon ses bulk emails
+    - make send email dynamic
+    -bee-queue && bull npm packages for queue mechanism
+
+
+# Razorpay Payment GateWay Integaration
+    - SignUp on Razorpay & complete Kyc
+    - Created an UI page for premium
+    - created an API for create order in backend
+    - Added key id and secret key in .env file
+    - Initialized Razorpay in Utils
+    - Creating order in Razorpay
+    - Created schema and model
+    - saved the order in payments collection
+    - made the api dynamic
+    - setup razorpay webhook on your live API 
+    - ref => https://github.com/razorpay/razorpay-node/tree/master/documents
+    - ref => https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway
+    - In the backend validate webhook signature ,
+    - after your signature got validated , store the status in the dataBase
+    - so for that get the details form req.body.payload.payment.entity
+    - ref => https://razorpay.com/docs/webhooks/payments/ 
+

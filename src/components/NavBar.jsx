@@ -5,6 +5,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 
+
 const NavBar = () => {
   const user = useSelector((store) => store.user);
 
@@ -81,6 +82,9 @@ const NavBar = () => {
 
                <li>
                 <Link to="/Requests" >Requests</Link>
+              </li>
+              <li>
+                <Link to="/Premium" >Premium</Link>
               </li>
 
               <li>

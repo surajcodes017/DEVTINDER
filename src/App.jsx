@@ -8,6 +8,12 @@ import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
 import SignUp from "./components/SignUp";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsAndConditions from "./components/TermsAndConditions";
+import RefundPolicy from "./components/RefundPolicy";
+import Premium from "./components/Premium";
 
 function App() {
   return (
@@ -22,6 +28,17 @@ function App() {
               <Route path="/Connections" element={<Connections />}  />
               <Route path="/Requests" element={<Requests />}   />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/About" element={<About />} />
+              <Route path="/Contact" element={<Contact />} />
+              <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+              <Route path="/RefundPolicy" element={<RefundPolicy />} />
+              <Route path="/Premium" element={<Premium />} />
+              
+
+
+
+
             </Route>
           </Routes>
         </BrowserRouter>
