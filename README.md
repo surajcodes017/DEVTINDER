@@ -146,3 +146,27 @@
     - so for that get the details form req.body.payload.payment.entity
     - ref => https://razorpay.com/docs/webhooks/payments/ 
 
+
+# Real Time chat using web sockets(socket.io)
+## FrontEnd configuration
+    - Build UI for chat window on /chat/:targetUserId
+## Backend configuration
+    - setUp socket.io in backend
+    - npm i socket.io  
+    - Attach ypur socket.io to your actual http server
+    - Listen for new socket connections 
+    - If u get a normal http request forward it to Express, and if u get websocket upgradation then forward it to socket.io attched on http server
+    - since yoy are manually creating this server , so replace app.listen to server.listen
+    - app.listen(7777)   <=>  server.listen(7777)
+## Front end configuration
+    - now there is front end package for socket.io, it is called 
+    npm i socket.io-client 
+    - create socket Connections
+    - listen to events
+## Backend 
+    - Create a chat database to store the chats
+    - create a backend API ofr this to store chat ,
+    - Home work improve UI
+    - Fix secutity bug
+    
+
